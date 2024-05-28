@@ -19,6 +19,9 @@ public class CarController : MonoBehaviour
    // public float speed = 10.0f;
     public float maxRight = 3.0f; // Sað sýnýr
     public float maxLeft = -3.0f; // Sol sýnýr
+
+    public float turnSpeed = 100f;
+    public Animator animator;
     void Start()
     {
         // Butonlarý bul ve olay dinleyicilerini ekle
@@ -40,6 +43,10 @@ public class CarController : MonoBehaviour
 
         // Baþlangýçta aracý hareket ettir
         GetComponent<Rigidbody>().velocity = transform.forward * speed;
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+        }
     }
 
     void Update()
@@ -51,7 +58,7 @@ public class CarController : MonoBehaviour
         }
         if (isBraking)
         {
-            speed = Mathf.Max(speed - deceleration * 10f *Time.deltaTime, 2.5f);
+            speed = Mathf.Max(speed - deceleration * 15f *Time.deltaTime, 3f);
         }
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -59,11 +66,11 @@ public class CarController : MonoBehaviour
         // Saða ve sola hareket ettirin
         if (isSteeringLeft)
         {
-            transform.Translate(Vector3.left * steeringSpeed * 5f * Time.deltaTime);
+            transform.Translate(Vector3.left * steeringSpeed * 6f * Time.deltaTime);
         }
         if (isSteeringRight)
         {
-            transform.Translate(Vector3.right * steeringSpeed * 5f *Time.deltaTime);
+            transform.Translate(Vector3.right * steeringSpeed * 6f *Time.deltaTime);
         }
         // Sað sýnýr kontrolü
         if (transform.position.x > maxRight)
@@ -75,6 +82,16 @@ public class CarController : MonoBehaviour
         if (transform.position.x < maxLeft)
         {
             transform.position = new Vector3(maxLeft, transform.position.y, transform.position.z);
+        }
+
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("EnemyCar"))
+        {
+            Debug.Log("Game Over!");
+            // Oyun bitirme iþlemleri buraya eklenebilir
+            Time.timeScale = 0;  // Oyun durdurma
         }
     }
 

@@ -693,7 +693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6239536907463367150, guid: d9c5f4c36d9a5e34f8fc6ff06984ab76, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.5
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 6239536907463367150, guid: d9c5f4c36d9a5e34f8fc6ff06984ab76, type: 3}
       propertyPath: m_LocalPosition.z
@@ -741,6 +741,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6239536907463367149, guid: d9c5f4c36d9a5e34f8fc6ff06984ab76, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1215394976}
+    - targetCorrespondingSourceObject: {fileID: 6239536907463367149, guid: d9c5f4c36d9a5e34f8fc6ff06984ab76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1215394981}
   m_SourcePrefab: {fileID: 100100000, guid: d9c5f4c36d9a5e34f8fc6ff06984ab76, type: 3}
 --- !u!1 &1215394975 stripped
 GameObject:
@@ -760,12 +763,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7.5
-  maxSpeed: 30
+  maxSpeed: 50
   acceleration: 2
   deceleration: 2
   steeringSpeed: 2
   maxRight: 3.5
   maxLeft: -3.5
+  turnSpeed: 100
+  animator: {fileID: 1215394981}
 --- !u!54 &1215394977
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -798,6 +803,27 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6239536907463367150, guid: d9c5f4c36d9a5e34f8fc6ff06984ab76, type: 3}
   m_PrefabInstance: {fileID: 1215394974}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1215394981
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215394975}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e2aab4bcfd21ed84fb7318c7d7f6c3eb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1278716975
 GameObject:
   m_ObjectHideFlags: 0
@@ -1389,6 +1415,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1794413014}
   - component: {fileID: 1794413015}
+  - component: {fileID: 1794413016}
   m_Layer: 0
   m_Name: RoadManager
   m_TagString: Untagged
@@ -1426,6 +1453,23 @@ MonoBehaviour:
   roadPrefabs:
   - {fileID: 6637272107082296891, guid: a4de5ca655e4c34469a13910128acf5c, type: 3}
   playerTransform: {fileID: 1215394979}
+--- !u!114 &1794413016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1794413013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613e72b0fe0e37345bd5f9c68c4ae4d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyCarPrefab: {fileID: 3877068399283873835, guid: f97e46c1c31e95646b557aeed0d484f7, type: 3}
+  car: {fileID: 1215394979}
+  spawnInterval: 3
+  spawnDistance: 75
+  maxEnemiesAtOnce: 8
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
